@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <div class="container">
+        <h1>
+            <i class="fas fa-chart-line" style="margin-right: 10px; font-size: 0.8em;"></i>
+            {% trans %}Leaderboard{% endtrans %}
+        </h1>
+        <div class="bt-subtitle">// ANALYST RANKINGS</div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            {% include "components/errors.html" %}
+        </div>
+    </div>
+
+    <div x-data="ScoreboardList" @load-scoreboard.window="loadScoreboard()">
+        <div x-show="!loaded">
+            <div class="min-vh-25 d-flex align-items-center">
+                <div class="text-center w-100">
+                    <i class="fas fa-circle-notch fa-spin fa-3x fa-fw spinner"></i>
+                </div>
+            </div>
+        </div>
+
+        <div x-show="loaded">
+            <div x-show="brackets.length > 1">
+                <ul class="nav nav-pills justify-content-center py-3">
+                    <template x-for="bracket in brackets" :key="bracket.id">
+                        <li class="nav-item">
+                            <button class="nav-link" :class="{ 'active': activeBracket === bracket.id }"
+                                @click="activeBracket = bracket.id; loadScoreboard()" x-text="bracket.name">
+                            </button>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+
+            <div id="scoreboard">
+                <table class="table table-striped align-middle">
+                    <thead>
+                        <tr>
+                            <th class="text-center">{%- trans -%}Rank{%- endtrans -%}</th>
+                            <th>{%- trans -%}Team{%- endtrans -%}</th>
+                            <th class="text-center d-none d-md-table-cell">{%- trans -%}Detections{%- endtrans -%}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template x-for="(standing, idx) in standings" :key="standing.account_id">
+                            <tr>
+                                <td class="text-center" x-text="standing.pos"></td>
+                                <td><a :href="standing.account_url" x-text="standing.name"></a></td>
+                                <td class="text-center d-none d-md-table-cell" x-text="standing.score"></td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+
+            <div x-show="standings.length === 0" class="text-center py-5">
+                <h3 class="opacity-50">
+                    <i class="fas fa-ghost me-2"></i>
+                    {% trans %}No detections recorded yet{% endtrans %}
+                </h3>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ Assets.js("assets/js/scoreboard.js") }}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="gctf-error-container">
+    <div class="gctf-error-code">500</div>
+    <div class="gctf-error-msg mt-3">SERVER ERROR</div>
+    <p class="gctf-subtitle mt-3">Internal server error. Please try again.</p>
+    <a href="{{ url_for('views.static_html') }}" class="btn btn-primary mt-4">
+        > RETURN
+    </a>
+</div>
+{% endblock %}

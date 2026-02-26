@@ -1,0 +1,799 @@
+/* ============================================
+   BLUE TEAM CTFd THEME — CUSTOM OVERRIDES
+   ============================================
+   Aggressive dark/blue cybersecurity aesthetic
+   Loaded after Bootstrap core CSS
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+
+/* ---- CSS Custom Properties ---- */
+:root {
+    --bt-bg-primary: #0a0e14;
+    --bt-bg-secondary: #0f1923;
+    --bt-bg-tertiary: #162030;
+    --bt-bg-card: #121c2b;
+    --bt-blue-primary: #0ea5e9;
+    --bt-blue-dark: #0369a1;
+    --bt-blue-glow: #38bdf8;
+    --bt-blue-muted: #0284c7;
+    --bt-blue-accent: #38bdf8;
+    --bt-text-primary: #f0f4f8;
+    --bt-text-secondary: #94a3b8;
+    --bt-text-muted: #64748b;
+    --bt-border: #1e3a5f;
+    --bt-border-blue: rgba(14, 165, 233, 0.3);
+    --bt-glow-sm: 0 0 10px rgba(14, 165, 233, 0.3);
+    --bt-glow-md: 0 0 20px rgba(14, 165, 233, 0.4);
+    --bt-glow-lg: 0 0 30px rgba(14, 165, 233, 0.5);
+    --bt-scanline: repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 0, 0, 0.03) 2px,
+            rgba(0, 0, 0, 0.03) 4px);
+}
+
+/* ---- Force Dark Mode ---- */
+[data-bs-theme="dark"] {
+    --bs-body-bg: var(--bt-bg-primary);
+    --bs-body-color: var(--bt-text-primary);
+    --bs-primary: var(--bt-blue-primary);
+    --bs-dark: var(--bt-bg-secondary);
+}
+
+/* ---- Global Body ---- */
+body {
+    background-color: var(--bt-bg-primary) !important;
+    color: var(--bt-text-primary) !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    overflow-x: hidden;
+}
+
+/* Scanline overlay removed — was causing dimming and modal interaction issues */
+
+/* ---- Typography ---- */
+h1,
+h2,
+h3 {
+    font-family: 'Orbitron', sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 3px !important;
+    color: var(--bt-blue-primary) !important;
+}
+
+h1 {
+    font-weight: 700 !important;
+    text-shadow: 0 0 20px rgba(14, 165, 233, 0.5), 0 0 40px rgba(14, 165, 233, 0.2);
+}
+
+h4,
+h5,
+h6 {
+    font-family: 'Rajdhani', sans-serif !important;
+    color: var(--bt-text-primary) !important;
+}
+
+a {
+    color: var(--bt-blue-accent) !important;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: var(--bt-blue-glow) !important;
+    text-shadow: 0 0 8px rgba(56, 189, 248, 0.5);
+}
+
+small.text-muted,
+.text-muted,
+.text-secondary {
+    color: var(--bt-text-secondary) !important;
+}
+
+/* ---- Navbar ---- */
+.navbar {
+    background: linear-gradient(180deg, #0d0d0d 0%, #111111 100%) !important;
+    border-bottom: 2px solid var(--bt-blue-primary) !important;
+    box-shadow: 0 2px 20px rgba(14, 165, 233, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-brand {
+    font-family: 'Orbitron', sans-serif !important;
+    font-weight: 700 !important;
+    color: var(--bt-blue-primary) !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar-dark .navbar-nav .nav-link,
+.navbar .nav-link {
+    color: var(--bt-text-primary) !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar .nav-link:hover {
+    color: var(--bt-blue-glow) !important;
+    text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+}
+
+.navbar-dark .navbar-nav .nav-link::after,
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--bt-blue-primary);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 8px rgba(14, 165, 233, 0.5);
+}
+
+.navbar-dark .navbar-nav .nav-link:hover::after,
+.navbar .nav-link:hover::after {
+    width: 80%;
+}
+
+.navbar-toggler {
+    border-color: var(--bt-blue-primary) !important;
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* ---- Jumbotron / Page Header ---- */
+.jumbotron {
+    background: linear-gradient(135deg, #0a1628 0%, #0d0d0d 40%, #0a1525 70%, #080e16 100%) !important;
+    color: var(--bt-text-primary) !important;
+    border-bottom: 3px solid var(--bt-blue-primary);
+    box-shadow: inset 0 -5px 30px rgba(14, 165, 233, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.jumbotron::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(ellipse at 20% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 50%, rgba(3, 105, 161, 0.06) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.jumbotron::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 300%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(14, 165, 233, 0.03), transparent);
+    animation: scanline-sweep 8s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes scanline-sweep {
+    0% {
+        transform: translateX(-33%);
+    }
+
+    100% {
+        transform: translateX(33%);
+    }
+}
+
+.jumbotron h1 {
+    color: var(--bt-blue-primary) !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* ---- Challenge Buttons ---- */
+.challenge-button,
+[data-bs-theme="dark"] .challenge-button,
+[data-bs-theme="light"] .challenge-button {
+    background: linear-gradient(145deg, #1a1a1a, #222222) !important;
+    border: 1px solid var(--bt-border-blue) !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.challenge-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bt-blue-primary), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.challenge-button:hover {
+    border-color: var(--bt-blue-primary) !important;
+    background: linear-gradient(145deg, #252525, #2e2e2e) !important;
+    box-shadow: var(--bt-glow-sm), inset 0 0 30px rgba(14, 165, 233, 0.05) !important;
+    transform: translateY(-2px);
+}
+
+.challenge-button:hover::before {
+    opacity: 1;
+}
+
+.challenge-button .challenge-inner p {
+    color: var(--bt-text-primary) !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 600;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.challenge-button .challenge-inner span {
+    color: var(--bt-blue-accent) !important;
+    font-family: 'Share Tech Mono', monospace !important;
+    font-size: 1.2rem;
+}
+
+/* Solved challenges */
+.challenge-button.challenge-solved,
+[data-bs-theme="dark"] .challenge-button.challenge-solved,
+[data-bs-theme="light"] .challenge-button.challenge-solved {
+    background: linear-gradient(145deg, #0a1f0a, #112211) !important;
+    border-color: #29c830 !important;
+    box-shadow: 0 0 15px rgba(41, 200, 48, 0.15) !important;
+}
+
+.challenge-button.challenge-solved:hover,
+[data-bs-theme="dark"] .challenge-button.challenge-solved:hover,
+[data-bs-theme="light"] .challenge-button.challenge-solved:hover {
+    background: linear-gradient(145deg, #0f2a0f, #163316) !important;
+    box-shadow: 0 0 20px rgba(41, 200, 48, 0.25) !important;
+}
+
+/* Category Headers */
+.category-header h3 {
+    border-left: 4px solid var(--bt-blue-primary);
+    padding-left: 15px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* ---- Forms ---- */
+.form-control,
+.form-select {
+    background-color: var(--bt-bg-tertiary) !important;
+    border: 1px solid var(--bt-border) !important;
+    color: var(--bt-text-primary) !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--bt-blue-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.25) !important;
+    background-color: var(--bt-bg-secondary) !important;
+}
+
+.form-control::placeholder {
+    color: var(--bt-text-muted) !important;
+}
+
+.form-label,
+label b {
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+}
+
+/* ---- Buttons ---- */
+/* Force all buttons to have visible text - prevent link color bleed */
+.btn,
+a.btn,
+a.btn:hover,
+a.btn:focus,
+a.btn:active,
+.btn:hover,
+.btn:focus,
+.btn:active {
+    color: #fff !important;
+    text-shadow: none !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--bt-blue-dark), var(--bt-blue-primary)) !important;
+    border: 1px solid var(--bt-blue-primary) !important;
+    color: #fff !important;
+    font-family: 'Rajdhani', sans-serif !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+a.btn-primary:hover,
+a.btn-primary:focus {
+    background: linear-gradient(135deg, var(--bt-blue-primary), var(--bt-blue-glow)) !important;
+    box-shadow: var(--bt-glow-md) !important;
+    transform: translateY(-1px);
+    color: #fff !important;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-dark {
+    background-color: var(--bt-bg-tertiary) !important;
+    border-color: var(--bt-border) !important;
+    color: var(--bt-text-primary) !important;
+}
+
+.btn-dark:hover {
+    background-color: #222 !important;
+    border-color: var(--bt-blue-primary) !important;
+    color: #fff !important;
+}
+
+.btn-secondary,
+a.btn-secondary {
+    background: var(--bt-bg-tertiary) !important;
+    border: 1px solid var(--bt-border) !important;
+    color: var(--bt-text-primary) !important;
+}
+
+.btn-secondary:hover,
+a.btn-secondary:hover {
+    color: #fff !important;
+}
+
+.btn-outline-secondary {
+    border-color: var(--bt-border) !important;
+    color: var(--bt-text-primary) !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--bt-bg-tertiary) !important;
+    border-color: var(--bt-blue-primary) !important;
+    color: #fff !important;
+}
+
+.btn-danger {
+    color: #fff !important;
+}
+
+/* ---- Tables (Scoreboard) ---- */
+.table {
+    color: var(--bt-text-primary) !important;
+    --bs-table-bg: transparent;
+    --bs-table-striped-bg: rgba(14, 165, 233, 0.03);
+}
+
+.table thead th {
+    background-color: rgba(14, 165, 233, 0.1) !important;
+    border-bottom: 2px solid var(--bt-blue-primary) !important;
+    color: var(--bt-blue-primary) !important;
+    font-family: 'Orbitron', sans-serif !important;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.table tbody tr {
+    border-color: var(--bt-border) !important;
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: rgba(14, 165, 233, 0.06) !important;
+}
+
+.table td,
+.table th {
+    border-color: var(--bt-border) !important;
+}
+
+/* ---- Cards / Modals ---- */
+.card,
+.modal-content {
+    background-color: var(--bt-bg-secondary) !important;
+    border: 1px solid var(--bt-border) !important;
+    color: var(--bt-text-primary) !important;
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--bt-border-blue) !important;
+}
+
+.modal-footer {
+    border-top: 1px solid var(--bt-border-blue) !important;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+/* Ensure modals are always on top and fully interactive */
+.modal {
+    z-index: 1055 !important;
+    pointer-events: auto !important;
+}
+
+.modal-backdrop {
+    z-index: 1050 !important;
+    background-color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.modal.show .modal-dialog {
+    pointer-events: auto !important;
+}
+
+.modal-content {
+    pointer-events: auto !important;
+}
+
+/* Challenge modal specific styling */
+#challenge-window .modal-content {
+    background-color: var(--bt-bg-primary) !important;
+    border: 1px solid var(--bt-blue-primary) !important;
+    box-shadow: var(--bt-glow-lg);
+}
+
+#challenge-window .nav-tabs {
+    border-bottom-color: var(--bt-border) !important;
+}
+
+#challenge-window .nav-tabs .nav-link {
+    color: var(--bt-text-secondary) !important;
+    border: none !important;
+    font-family: 'Rajdhani', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#challenge-window .nav-tabs .nav-link.active,
+#challenge-window .nav-tabs .nav-link:hover {
+    color: var(--bt-blue-primary) !important;
+    border-bottom: 2px solid var(--bt-blue-primary) !important;
+    background: transparent !important;
+}
+
+#challenge-window .challenge-input {
+    background-color: var(--bt-bg-tertiary) !important;
+    border: 1px solid var(--bt-border) !important;
+    color: var(--bt-text-primary) !important;
+}
+
+#challenge-window .challenge-input:focus {
+    border-color: var(--bt-blue-primary) !important;
+    box-shadow: 0 0 0 0.2rem rgba(14, 165, 233, 0.25) !important;
+}
+
+#challenge-window .challenge-submit {
+    border-color: var(--bt-blue-primary) !important;
+    color: var(--bt-text-primary) !important;
+}
+
+#challenge-window .challenge-submit:hover {
+    background-color: var(--bt-blue-primary) !important;
+    color: #fff !important;
+}
+
+.challenge-desc {
+    color: var(--bt-text-secondary) !important;
+}
+
+.challenge-desc p,
+.challenge-desc span,
+.challenge-desc div {
+    color: var(--bt-text-secondary) !important;
+}
+
+/* ---- Nav Pills (Scoreboard brackets etc) ---- */
+.nav-pills .nav-link {
+    color: var(--bt-text-secondary) !important;
+    border-radius: 0 !important;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-pills .nav-link:hover {
+    color: var(--bt-blue-accent) !important;
+    background-color: rgba(14, 165, 233, 0.08) !important;
+}
+
+.nav-pills .nav-link.active {
+    background-color: rgba(14, 165, 233, 0.15) !important;
+    color: var(--bt-blue-primary) !important;
+    border: 1px solid var(--bt-blue-primary) !important;
+}
+
+/* ---- Footer ---- */
+.footer {
+    background-color: var(--bt-bg-secondary) !important;
+    border-top: 1px solid var(--bt-border) !important;
+    padding: 20px 0;
+}
+
+.footer a,
+.footer .text-secondary {
+    color: var(--bt-text-muted) !important;
+}
+
+.footer a:hover {
+    color: var(--bt-blue-primary) !important;
+}
+
+/* ---- Alerts ---- */
+.alert-success {
+    background-color: rgba(41, 200, 48, 0.1) !important;
+    border-color: rgba(41, 200, 48, 0.3) !important;
+    color: #4caf50 !important;
+}
+
+.alert-danger {
+    background-color: rgba(14, 165, 233, 0.1) !important;
+    border-color: rgba(14, 165, 233, 0.3) !important;
+    color: var(--bt-blue-accent) !important;
+}
+
+.alert-info {
+    background-color: rgba(92, 114, 143, 0.1) !important;
+    border-color: rgba(92, 114, 143, 0.3) !important;
+}
+
+/* ---- Badges ---- */
+.badge.bg-secondary {
+    background-color: var(--bt-bg-tertiary) !important;
+    color: var(--bt-text-primary) !important;
+}
+
+.badge.bg-danger {
+    background: var(--bt-blue-primary) !important;
+}
+
+.badge.bg-primary {
+    background: var(--bt-blue-primary) !important;
+}
+
+/* ---- Dropdown ---- */
+.dropdown-menu {
+    background-color: var(--bt-bg-secondary) !important;
+    border: 1px solid var(--bt-border) !important;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+.dropdown-item {
+    color: var(--bt-text-primary) !important;
+    transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: rgba(14, 165, 233, 0.1) !important;
+    color: var(--bt-blue-primary) !important;
+}
+
+.dropdown-item.bg-primary {
+    background-color: var(--bt-blue-primary) !important;
+}
+
+/* ---- Spinner ---- */
+.fa-spin.spinner {
+    color: var(--bt-blue-primary) !important;
+    opacity: 0.7;
+}
+
+/* ---- HR / Dividers ---- */
+hr {
+    border-color: var(--bt-border) !important;
+    opacity: 0.5;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bt-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bt-bg-tertiary);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bt-blue-dark);
+}
+
+/* ---- Page-specific: Login/Register ---- */
+.bt-auth-container {
+    position: relative;
+}
+
+.bt-auth-container::before {
+    content: 'ACCESS RESTRICTED';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-35deg);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(14, 165, 233, 0.03);
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    letter-spacing: 10px;
+}
+
+/* ---- Glitch Effect for headings ---- */
+@keyframes redpulse {
+
+    0%,
+    100% {
+        text-shadow: 0 0 20px rgba(14, 165, 233, 0.5), 0 0 40px rgba(14, 165, 233, 0.2);
+    }
+
+    50% {
+        text-shadow: 0 0 30px rgba(14, 165, 233, 0.7), 0 0 60px rgba(14, 165, 233, 0.3);
+    }
+}
+
+.jumbotron h1 {
+    animation: redpulse 3s ease-in-out infinite;
+}
+
+/* ---- Red Team Identifier Bar ---- */
+.bt-identifier {
+    background: linear-gradient(90deg, var(--bt-blue-dark), var(--bt-blue-primary), var(--bt-blue-dark));
+    height: 2px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.bt-identifier::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+/* ---- Red Team Banner Subtitle ---- */
+.bt-subtitle {
+    font-family: 'Share Tech Mono', monospace;
+    color: var(--bt-text-secondary);
+    font-size: 0.85rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+
+/* ---- Blockquotes ---- */
+blockquote {
+    border-left: 4px solid var(--bt-blue-primary) !important;
+}
+
+/* ---- Selection ---- */
+::selection {
+    background: rgba(14, 165, 233, 0.3);
+    color: #fff;
+}
+
+/* ---- Tab content styling ---- */
+.tab-content {
+    background-color: transparent !important;
+}
+
+.tab-pane {
+    color: var(--bt-text-primary) !important;
+}
+
+/* ---- Error Pages ---- */
+.bt-error-container {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.bt-error-code {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 8rem;
+    font-weight: 900;
+    color: var(--bt-blue-primary);
+    text-shadow: 0 0 40px rgba(14, 165, 233, 0.4);
+    line-height: 1;
+    animation: redpulse 3s ease-in-out infinite;
+}
+
+.bt-error-message {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.2rem;
+    color: var(--bt-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-top: 1rem;
+}
+
+/* ---- Notification Toast ---- */
+.toast,
+.snackbar {
+    background-color: var(--bt-bg-secondary) !important;
+    border: 1px solid var(--bt-border-blue) !important;
+    color: var(--bt-text-primary) !important;
+}
+
+/* ---- Container adjustments ---- */
+.container {
+    position: relative;
+}
+
+/* ---- Responsive adjustments ---- */
+@media (max-width: 768px) {
+    .bt-auth-container::before {
+        font-size: 2.5rem;
+    }
+
+    .bt-error-code {
+        font-size: 5rem;
+    }
+
+    h1 {
+        font-size: 1.5rem !important;
+    }
+}
